@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}BoardBundle:Announcement:show{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Announcement:show page</h1>
+    {% for announcement in announcements %}
+        <p>Nazwa: {{ announcement.title }}</p>
+        <p>Opis: {{ announcement.description }}</p>
+        <p>Cena: {{ announcement.price }}</p>
+        <p>Data dodania: {{ announcement.addDate |date("m/d/Y") }}</p>
+    {% endfor %}
+{% endblock %}

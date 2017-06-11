@@ -1,0 +1,175 @@
+<?php
+
+namespace BoardBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Table(name="announcement")
+ * @ORM\Entity(repositoryClass="BoardBundle\Repository\AnnouncementRepository")
+ */
+class Announcement
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="announcement")
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="announcements")
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="title", type="string", length=200)
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(name="price", type="float", precision=2)
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(name="add_date", type="datetime")
+     */
+    private $addDate;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Announcement
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Announcement
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     * @return Announcement
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set addDate
+     *
+     * @param \DateTime $addDate
+     * @return Announcement
+     */
+    public function setAddDate($addDate)
+    {
+        $this->addDate = $addDate;
+
+        return $this;
+    }
+
+    /**
+     * Get addDate
+     *
+     * @return \DateTime 
+     */
+    public function getAddDate()
+    {
+        return $this->addDate;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \BoardBundle\Entity\User $user
+     * @return Announcement
+     */
+    public function setUser(\BoardBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \BoardBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

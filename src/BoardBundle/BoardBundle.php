@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle;
+namespace BoardBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AppBundle extends Bundle
+class BoardBundle extends Bundle
 {
 }
