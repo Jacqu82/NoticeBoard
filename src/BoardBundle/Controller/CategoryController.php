@@ -12,13 +12,6 @@ use BoardBundle\Form\CategoryType;
 
 class CategoryController extends Controller
 {
-    /**
-     * @Route("/")
-     */
-    public function indexAction()
-    {
-        return $this->render('BoardBundle:Default:index.html.twig');
-    }
 
     /**
      * @Route("/createCat", name="createCategory")

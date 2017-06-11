@@ -3,9 +3,12 @@
 {% block title %}BoardBundle:Announcement:create{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Announcement:create page</h1>
-    {{ form_start (form) }}
-    {{ form_widget (form) }}
-    {{ form_end (form) }}
-
+    <h1>Dodaj nowe ogłoszenie</h1>
+    {% if app.user %}
+        {{ form_start (form) }}
+        {{ form_widget (form) }}
+        {{ form_end (form) }}
+    {% else %}
+        <h4 style="color: crimson">Aby dodać ogłoszenie musisz być zalogowany!</h4>
+    {% endif %}
 {% endblock %}

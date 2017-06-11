@@ -18,9 +18,9 @@ class AnnouncementType extends AbstractType
         $builder->add('title', 'text', array('label' => 'Tytuł'))
                 ->add('description', 'text', array('label' => 'Opis'))
                 ->add('price','number', array('label' => 'Cena'))
-                ->add('addDate', DateType::class, array('label' => 'Data'))
+                ->add('addDate', 'datetime', array('label' => 'Data'))
                 ->add('category', 'entity', array('class' => 'BoardBundle:Category', 'label' => 'Kategoria'))
-                ->add('user', 'entity', array('class' => 'BoardBundle:User', 'label' => 'użytkownik'))
+//                ->add('user', 'entity', array('class' => 'BoardBundle:User', 'label' => 'użytkownik'))
                 ->add('save', 'submit', array('label' => 'Dodaj ogłoszenie'));
     }
     
