@@ -41,6 +41,4 @@ class AnnouncementType extends AbstractType
     {
         return 'boardbundle_announcement';
     }
-
-
 }
