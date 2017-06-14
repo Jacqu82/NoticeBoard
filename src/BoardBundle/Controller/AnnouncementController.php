@@ -28,6 +28,15 @@ class AnnouncementController extends Controller
             $announcement = $form->getData();
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $announcement->setUser($user);
+
+            $file = $announcement->getPhotoPath();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('path_directory'),
+                $fileName);
+            $announcement->setPhotoPath($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($announcement);
             $em->flush();
@@ -48,6 +57,7 @@ class AnnouncementController extends Controller
         if (!$announcement) {
             throw new NotFoundHttpException('Nie znaleziono żadnych ogłoszeń');
         }
+
         return ['announcements' => $announcement];
     }
 
@@ -62,6 +72,7 @@ class AnnouncementController extends Controller
         if (!$announcement) {
             return new Response('Ogłoszenie o '.$id.' nie istnieje');
         }
+
         return ['announcement' => $announcement];
     }
 
@@ -76,15 +87,22 @@ class AnnouncementController extends Controller
         $announcementUser = $announcement->getUser();
         $loggedUser = $this->get('security.token_storage')->getToken()->getUser();
 
+        $form = $this->createForm(AnnouncementType::class, $announcement);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+        $file = $announcement->getPhotoPath();
+        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+        $file->move(
+            $this->getParameter('path_directory'),
+            $fileName);
+        $announcement->setPhotoPath($fileName);
 
         if ($announcementUser != $loggedUser) {
             return new Response('Nie możesz edytować tego ogłoszenia');
         }
 
-        $form = $this->createForm(AnnouncementType::class, $announcement);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
             $announcement = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($announcement);

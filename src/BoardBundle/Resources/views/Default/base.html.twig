@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link href="{{ asset('bundles/framework/css/style.css') }}" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}
-            <div>
-                <h1>Tablica ogłoszeń.pl</h1>
-                <p>
-                    <a href="{{ path('showAll', {}) }}">
-                        <h3>Przeglądaj ogłoszenia</h3>
-                    </a>
-                </p>
-                <p>
-                    <a href="{{ path('create', {}) }}">
-                        <h3>Dodaj ogłoszenie</h3>
-                    </a>
-                </p>
-                <p>
-                    <a href="{{ path('createCategory', {}) }}">
-                        <h3>Dodaj kategorię</h3>
-                    </a>
-                </p>
-            </div>
-        {% endblock %}
-        {% block javascripts %}{% endblock %}
-        <div class="footer">2017 &copy Tablica ogłoszeń.pl</div>
-    </body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link href="{{ asset('bundles/framework/css/style.css') }}" rel="stylesheet"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+{% block body %}
+    <div>
+        <h1>Tablica ogłoszeń.pl</h1>
+        {% if not app.user %}
+            <h4 style="color: crimson">Nie jesteś zalogowany!</h4>
+            <a href="http://localhost:8000/login">Zaloguj się</a>
+            <hr/>
+            <p>
+                <a href="{{ path('showAll', {}) }}">
+                    <h3>Przeglądaj ogłoszenia</h3>
+                </a>
+            </p>
+            <p>
+                <a href="{{ path('create', {}) }}">
+                    <h3>Dodaj ogłoszenie</h3>
+                </a>
+            </p>
+        {% else %}
+            Zalogowany jako: {{ data.userName }}
+            <p>
+                <a href="{{ path('showAll', {}) }}">
+                    <h3>Przeglądaj ogłoszenia</h3>
+                </a>
+            </p>
+            <p>
+                <a href="{{ path('create', {}) }}">
+                    <h3>Dodaj ogłoszenie</h3>
+                </a>
+            </p>
+            <hr/>
+            <a href="http://localhost:8000/logout">Wyloguj się</a>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+<div class="footer">2017 &copy Tablica ogłoszeń.pl</div>
+</body>
 </html>

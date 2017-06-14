@@ -13,6 +13,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('BoardBundle:Default:base.html.twig');
+        return $this->render('BoardBundle:Default:base.html.twig', ['data' => [
+            'userName' => $this->getUser(),
+        ]]);
     }
 }

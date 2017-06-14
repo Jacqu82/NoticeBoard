@@ -3,11 +3,15 @@
 {% block title %}BoardBundle:Announcement:show{% endblock %}
 
 {% block body %}
-<h1>Wszystkie ogłoszenia</h1>
+    <h1>Wszystkie ogłoszenia</h1>
     {% for announcement in announcements %}
-        <p><a href="{{ path('show_details', {'id': announcement.id}) }}">{{ announcement.title }}</a></p>
-        <p>Cena: {{ announcement.price }}</p>
-        <p>Data dodania: {{ announcement.addDate |date("d/m/Y H:i:s") }}</p>
+        <div><a href="{{ path('show_details', {'id': announcement.id}) }}">{{ announcement.title }}<br/><br/>
+                <img src="{{ announcement.webPath }}" width="150" height="100"></a></div>
+        <p>Przedmiot w kategorii: {{ announcement.category }}</p>
+        <p>Cena: {{ announcement.price }} zł</p>
+        <p>Data wygaśnięcia: {{ announcement.addDate |date("d/m/Y H:i:s") }}</p>
+        <small>(Dodano przez użytkownika {{ announcement.getUser() }})</small>
         <hr/>
     {% endfor %}
+    <a href="http://localhost:8000/">Powrót do strony głównej</a>
 {% endblock %}

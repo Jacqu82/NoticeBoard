@@ -47,6 +47,20 @@ class Announcement
      */
     private $addDate;
 
+    /**
+     * @ORM\Column(name="photo_path", type="text")
+     */
+    private $photoPath;
+
+    public function getPhotoPath()
+    {
+        return $this->photoPath;
+    }
+
+    public function setPhotoPath($photoPath)
+    {
+        $this->photoPath = $photoPath;
+    }
 
     /**
      * Get id
@@ -194,5 +208,10 @@ class Announcement
     public function getCategory()
     {
         return $this->category;
+    }
+
+    public function getWebPath()
+    {
+        return '/photo/'.$this->photoPath;
     }
 }
