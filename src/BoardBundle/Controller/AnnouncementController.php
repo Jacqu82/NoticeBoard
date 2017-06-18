@@ -48,7 +48,6 @@ class AnnouncementController extends Controller
 
     /**
      * @Route("/show", name="showAll")
-     * @template("BoardBundle:Announcement:show.html.twig")
      */
     public function showAllAction()
     {
@@ -57,13 +56,11 @@ class AnnouncementController extends Controller
         if (!$announcement) {
             throw new NotFoundHttpException('Nie znaleziono żadnych ogłoszeń');
         }
-
-        return ['announcements' => $announcement];
+            return $this->render('BoardBundle:Announcement:show.html.twig', array('announcements' => $announcement));
     }
 
     /**
      * @Route("/show_details/{id}", name="show_details")
-     * @template("BoardBundle:Announcement:show_details.html.twig")
      */
     public function showAction($id)
     {
@@ -72,8 +69,7 @@ class AnnouncementController extends Controller
         if (!$announcement) {
             return new Response('Ogłoszenie o '.$id.' nie istnieje');
         }
-
-        return ['announcement' => $announcement];
+            return $this->render('BoardBundle:Announcement:show_details.html.twig', array('announcement' => $announcement));
     }
 
     /**

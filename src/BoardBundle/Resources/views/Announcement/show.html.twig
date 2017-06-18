@@ -7,8 +7,8 @@
     {% for announcement in announcements %}
         <div><a href="{{ path('show_details', {'id': announcement.id}) }}">{{ announcement.title }}<br/><br/>
                 <img src="{{ announcement.webPath }}" width="150" height="100"></a></div>
-        <p>Przedmiot w kategorii: {{ announcement.category }}</p>
-        <p>Cena: {{ announcement.price }} zł</p>
+        <h3>Przedmiot w kategorii: {{ announcement.category }}</h3>
+        <h2>Cena: {{ announcement.price }} zł</h2>
         <p>Data wygaśnięcia: {{ announcement.addDate |date("d/m/Y H:i:s") }}</p>
         <small>(Dodano przez użytkownika {{ announcement.getUser() }})</small>
         <hr/>

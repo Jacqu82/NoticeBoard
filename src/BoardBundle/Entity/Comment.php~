@@ -5,6 +5,8 @@ namespace BoardBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Comment
+ *
  * @ORM\Table(name="comment")
  * @ORM\Entity(repositoryClass="BoardBundle\Repository\CommentRepository")
  */
@@ -21,6 +23,8 @@ class Comment
     private $user;
 
     /**
+     * @var int
+     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -28,40 +32,43 @@ class Comment
     private $id;
 
     /**
-     * @ORM\Column(name="commentText", type="text")
+     * @var string
+     *
+     * @ORM\Column(name="text", type="string", length=255)
      */
-    private $commentText;
+    private $text;
+
 
     /**
-     * @ORM\Column(name="creationDate", type="datetime")
+     * Get id
+     *
+     * @return integer 
      */
-    private $creationDate;
-    
-
-    public function getCommentText()
-    {
-        return $this->commentText;
-    }
-
-    public function setCommentText($commentText)
-    {
-        $this->commentText = $commentText;
-    }
-
-    public function getCreationDate()
-    {
-        return $this->creationDate;
-    }
-
-    public function setCreationDate()
-    {
-        $this->creationDate = date('Y-m-d H:i:s');
-    }
-
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Set text
+     *
+     * @param string $text
+     * @return Comment
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
 
+        return $this;
+    }
+
+    /**
+     * Get text
+     *
+     * @return string 
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
 }

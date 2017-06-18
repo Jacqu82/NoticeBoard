@@ -17,11 +17,6 @@ class User extends BaseUser
     private $announcements;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
-     */
-    private $comments;
-
-    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -65,38 +60,5 @@ class User extends BaseUser
     public function getAnnouncements()
     {
         return $this->announcements;
-    }
-
-    /**
-     * Add comments
-     *
-     * @param \BoardBundle\Entity\Comment $comments
-     * @return User
-     */
-    public function addComment(\BoardBundle\Entity\Comment $comments)
-    {
-        $this->comments[] = $comments;
-
-        return $this;
-    }
-
-    /**
-     * Remove comments
-     *
-     * @param \BoardBundle\Entity\Comment $comments
-     */
-    public function removeComment(\BoardBundle\Entity\Comment $comments)
-    {
-        $this->comments->removeElement($comments);
-    }
-
-    /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getComments()
-    {
-        return $this->comments;
     }
 }

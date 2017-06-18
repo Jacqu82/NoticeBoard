@@ -17,9 +17,9 @@ class User extends BaseUser
     private $announcements;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="BoardBundle\Entity\Comment", mappedBy="user")
      */
-    private $comments;
+    private $comment;
 
     /**
      * @ORM\Id

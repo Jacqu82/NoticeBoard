@@ -3,14 +3,13 @@
 {% block title %}BoardBundle:Announcement:show{% endblock %}
 
 {% block body %}
-    {#<h1>Wszystkie ogłoszenia</h1>#}
-    <p>Kategoria: {{ announcement.getCategory() }}</p>
-    <h2>{{ announcement.title }}</h2>
+    <h3>Kategoria: {{ announcement.getCategory() }}</h3>
+    <h1>{{ announcement.title }}</h1>
+    <h2>Cena: {{ announcement.price }} zł</h2>
     <p>Opis Przedmiotu: <br/><br/>{{ announcement.description }}</p>
     <img src="{{ announcement.webPath }}" width="350" height="300">
-    <p>Cena: {{ announcement.price }} zł</p>
     <p>Data dodania: {{ announcement.addDate |date("d/m/Y H:i:s") }}</p>
-    <p>Dodany przez: {{ announcement.getUser() }}</p>
+    <h4>Dodany przez: {{ announcement.getUser() }}</h4>
     {% if app.user %}
         <a href="{{ path('edit', { 'id': announcement.id }) }}">Edytuj ogłoszenie<br/><br/></a>
         <a href="{{ path('delete', { 'id': announcement.id }) }}">Usuń ogłoszenie<br/><br/></a>

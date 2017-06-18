@@ -16,26 +16,50 @@
             <a href="http://localhost:8000/login">Zaloguj się</a>
             <hr/>
             <p>
-                <a href="{{ path('showAll', {}) }}">
-                    <h3>Przeglądaj ogłoszenia</h3>
-                </a>
-            </p>
-            <p>
                 <a href="{{ path('create', {}) }}">
                     <h3>Dodaj ogłoszenie</h3>
                 </a>
+            </p>
+            <p>
+                <a href="{{ path('showAll', {}) }}">
+                    <h3>Przeglądaj wszystkie ogłoszenia</h3>
+                </a>
+            </p>
+            <p>
+                <a href="{{ path('showAllCategories') }}">
+                    <h3>Przeglądaj ogłoszenia</h3>
+                </a>
+                <small>(po kategorii)</small>
+            </p>
+            <p>
+                <a href="{{ path('showAllUsers') }}">
+                    <h3>Przeglądaj ogłoszenia</h3>
+                </a>
+                <small>(po użytkownikach)</small>
             </p>
         {% else %}
             Zalogowany jako: {{ data.userName }}
             <p>
-                <a href="{{ path('showAll', {}) }}">
-                    <h3>Przeglądaj ogłoszenia</h3>
-                </a>
-            </p>
-            <p>
                 <a href="{{ path('create', {}) }}">
                     <h3>Dodaj ogłoszenie</h3>
                 </a>
+            </p>
+            <p>
+                <a href="{{ path('showAll', {}) }}">
+                    <h3>Przeglądaj wszystkie ogłoszenia</h3>
+                </a>
+            </p>
+            <p>
+                <a href="{{ path('showAllCategories') }}">
+                    <h3>Przeglądaj ogłoszenia</h3>
+                </a>
+                <small>(po kategorii)</small>
+            </p>
+            <p>
+                <a href="{{ path('showAllUsers') }}">
+                    <h3>Przeglądaj ogłoszenia</h3>
+                </a>
+                <small>(po użytkownikach)</small>
             </p>
             <hr/>
             <a href="http://localhost:8000/logout">Wyloguj się</a>

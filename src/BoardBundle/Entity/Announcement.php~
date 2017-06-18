@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Announcement
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="announcement")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="announcements")
      */
     private $category;
 
@@ -19,6 +19,11 @@ class Announcement
      * @ORM\ManyToOne(targetEntity="User", inversedBy="announcements")
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="BoardBundle\Entity\Comment", mappedBy="announcement")
+     */
+    private $comment;
 
     /**
      * @ORM\Column(name="id", type="integer")
@@ -47,6 +52,20 @@ class Announcement
      */
     private $addDate;
 
+    /**
+     * @ORM\Column(name="photo_path", type="text")
+     */
+    private $photoPath;
+
+    public function getPhotoPath()
+    {
+        return $this->photoPath;
+    }
+
+    public function setPhotoPath($photoPath)
+    {
+        $this->photoPath = $photoPath;
+    }
 
     /**
      * Get id
@@ -171,5 +190,33 @@ class Announcement
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \BoardBundle\Entity\Category $category
+     * @return Announcement
+     */
+    public function setCategory(\BoardBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \BoardBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function getWebPath()
+    {
+        return '/photo/'.$this->photoPath;
     }
 }
