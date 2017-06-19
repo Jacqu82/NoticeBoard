@@ -135,5 +135,4 @@ class AnnouncementController extends Controller
 
         return new Response('Pomyślnie usunołeś ogłoszenie');
     }
-
 }

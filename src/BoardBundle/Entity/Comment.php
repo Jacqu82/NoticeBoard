@@ -118,10 +118,33 @@ class Comment
     /**
      * Get user
      *
-     * @return \BoardBundle\Entity\User 
+     * @return \BoardBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set announcement
+     *
+     * @param \BoardBundle\Entity\Announcement $announcement
+     * @return Comment
+     */
+    public function setAnnouncement(\BoardBundle\Entity\Announcement $announcement = null)
+    {
+        $this->announcement = $announcement;
+
+        return $this;
+    }
+
+    /**
+     * Get announcement
+     *
+     * @return \BoardBundle\Entity\Announcement
+     */
+    public function getAnnouncement()
+    {
+        return $this->announcement;
     }
 }

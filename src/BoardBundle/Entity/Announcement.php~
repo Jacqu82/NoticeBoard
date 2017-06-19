@@ -11,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Announcement
 {
     /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="announcement")
+     */
+    private $comments;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="announcements")
      */
     private $category;
@@ -19,11 +24,6 @@ class Announcement
      * @ORM\ManyToOne(targetEntity="User", inversedBy="announcements")
      */
     private $user;
-
-    /**
-     * @ORM\OneToMany(targetEntity="BoardBundle\Entity\Comment", mappedBy="announcement")
-     */
-    private $comment;
 
     /**
      * @ORM\Column(name="id", type="integer")

@@ -11,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Announcement
 {
     /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="announcement")
+     */
+    private $comments;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="announcements")
      */
     private $category;
@@ -213,5 +218,46 @@ class Announcement
     public function getWebPath()
     {
         return '/photo/'.$this->photoPath;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \BoardBundle\Entity\Comment $comments
+     * @return Announcement
+     */
+    public function addComment(\BoardBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \BoardBundle\Entity\Comment $comments
+     */
+    public function removeComment(\BoardBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }
