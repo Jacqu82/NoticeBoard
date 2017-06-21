@@ -9,6 +9,7 @@
         {% for announcement in category.announcements %}
             <p><a href="{{ path('show_details', {'id':announcement.id}) }}">{{ announcement.title }}</a></p>
         {% endfor %}
+        <hr/>
     {% endfor %}
     <a href="http://localhost:8000/">Powrót do strony głównej</a>
 {% endblock %}

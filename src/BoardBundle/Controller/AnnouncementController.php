@@ -41,7 +41,7 @@ class AnnouncementController extends Controller
             $em->persist($announcement);
             $em->flush();
 
-            return new Response('Dodałeś ogłoszenie');
+            return $this->redirectToRoute('showAll', array('id' => $announcement->getId()));
         }
         return $this->render('BoardBundle:Announcement:create.html.twig',array('form' => $form->createView()));
     }
@@ -52,7 +52,7 @@ class AnnouncementController extends Controller
     public function showAllAction()
     {
         $announcementRepository = $this->getDoctrine()->getRepository('BoardBundle:Announcement');
-        $announcement = $announcementRepository->findAll();
+        $announcement = $announcementRepository->findBy(array(), array('id' => 'DESC'));
         if (!$announcement) {
             throw new NotFoundHttpException('Nie znaleziono żadnych ogłoszeń');
         }
@@ -96,7 +96,7 @@ class AnnouncementController extends Controller
         $announcement->setPhotoPath($fileName);
 
         if ($announcementUser != $loggedUser) {
-            return new Response('Nie możesz edytować tego ogłoszenia');
+            return new Response('Nie możesz edytować tego ogłoszenia!');
         }
 
             $announcement = $form->getData();
@@ -104,7 +104,7 @@ class AnnouncementController extends Controller
             $em->persist($announcement);
             $em->flush();
 
-            return new Response('Zmodyfikowałeś ogłoszenie');
+            return $this->redirectToRoute('show_details', array('id' => $announcement->getId()));
         }
         if (!$announcement) {
             return new Response('Nie ma takiego ogłoszenia!');
@@ -124,7 +124,7 @@ class AnnouncementController extends Controller
         $loggedUser = $this->get('security.token_storage')->getToken()->getUser();
 
         if ($announcementUser != $loggedUser) {
-            return new Response('Nie możesz usunąć tego ogłoszenia');
+            return new Response('Nie możesz usunąć tego ogłoszenia!');
         }
 
         if (!$announcement) {
@@ -133,6 +133,6 @@ class AnnouncementController extends Controller
         $em->remove($announcement);
         $em->flush();
 
-        return new Response('Pomyślnie usunołeś ogłoszenie');
+        return $this->redirectToRoute('showAll', array('id' => $announcement->getId()));
     }
 }

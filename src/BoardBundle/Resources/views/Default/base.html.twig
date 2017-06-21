@@ -13,7 +13,9 @@
         <h1>Tablica ogłoszeń.pl</h1>
         {% if not app.user %}
             <h4 style="color: crimson">Nie jesteś zalogowany!</h4>
-            <a href="http://localhost:8000/login">Zaloguj się</a>
+            <a href="http://localhost:8000/login">Zaloguj się</a><br/>
+            <small>lub</small><br/>
+            <a href="http://localhost:8000/register/">Załóż nowe konto</a>
             <hr/>
             <p>
                 <a href="{{ path('create', {}) }}">

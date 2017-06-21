@@ -10,11 +10,18 @@
     <img src="{{ announcement.webPath }}" width="350" height="300">
     <p>Data dodania: {{ announcement.addDate |date("d/m/Y H:i:s") }}</p>
     <h4>Dodany przez: {{ announcement.getUser() }}</h4>
-    <a href="{{ path('createComment', { 'id': announcement.id }) }}">Napisz komentarz<br/><br/></a>
+    <a href="{{ path('createComment', { 'id': announcement.id }) }}">Napisz komentarz<br/></a>
     {#<h3>Napisz komentarz</h3>#}
     {#{{ form_start (form) }}#}
     {#{{ form_widget (form) }}#}
     {#{{ form_end (form) }}#}
+    <h3>Komentarze:</h3>
+    {% for comment in announcement.comments %}
+        {{ comment.text }} <br/>
+        {{ comment.date |date("d/m/Y H:i:s") }} <br/>
+        {{ comment.getUser() }} <br/><br/>
+        {% endfor %}
+    <hr/>
     {% if app.user %}
         <a href="{{ path('edit', { 'id': announcement.id }) }}">Edytuj ogłoszenie<br/><br/></a>
         <a href="{{ path('delete', { 'id': announcement.id }) }}">Usuń ogłoszenie<br/><br/></a>

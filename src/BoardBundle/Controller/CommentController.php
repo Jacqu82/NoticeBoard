@@ -15,9 +15,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CommentController extends Controller
 {
     /**
-     * @Route("/createComment", name="createComment")
+     * @Route("/createComment/{id}", name="createComment")
      */
-    public function createCommentAction(Request $request)
+    public function createCommentAction(Request $request, $id)
     {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
@@ -28,14 +28,30 @@ class CommentController extends Controller
             $comment = $form->getData();
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $comment->setUser($user);
+            $announcementRepository = $this->getDoctrine()->getRepository('BoardBundle:Announcement');
+            $announcement = $announcementRepository->find($id);
+            $comment->setAnnouncement($announcement);
             $comment->setDate();
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
 
-            return new Response('Dodałeś komentarz');
+            return $this->redirectToRoute('show_details', array('id' => $announcement->getId()));
         }
         return $this->render('BoardBundle:Comment:create_comment.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route("showAllComments", name="showAllComments")
+     */
+    public function showAllCommentsActon()
+    {
+        $commentRepository = $this->getDoctrine()->getRepository('BoardBundle:Comment');
+        $comment = $commentRepository->findAll();
+        if (!$comment) {
+            throw new NotFoundHttpException('Brak komentarzy');
+        }
+        return $this->render('BoardBundle:Announcement:show_details.html.twig', array('comments' => $comment));
     }
 }
