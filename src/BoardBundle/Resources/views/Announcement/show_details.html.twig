@@ -11,22 +11,25 @@
     <p>Data dodania: {{ announcement.addDate |date("d/m/Y H:i:s") }}</p>
     <h4>Dodany przez: {{ announcement.getUser() }}</h4>
     <a href="{{ path('createComment', { 'id': announcement.id }) }}">Napisz komentarz<br/></a>
-    {#<h3>Napisz komentarz</h3>#}
-    {#{{ form_start (form) }}#}
-    {#{{ form_widget (form) }}#}
-    {#{{ form_end (form) }}#}
+    {#{% block form %}#}
+        {#<h3>Napisz komentarz</h3>#}
+        {#{{ form_start (form) }}#}
+        {#{{ form_widget (form) }}#}
+        {#{{ form_end (form) }}#}
+    {#{% endblock %}#}
     <h3>Komentarze:</h3>
     {% for comment in announcement.comments %}
         {{ comment.text }} <br/>
         {{ comment.date |date("d/m/Y H:i:s") }} <br/>
         {{ comment.getUser() }} <br/><br/>
-        {% endfor %}
+    {% endfor %}
     <hr/>
     {% if app.user %}
-        <a href="{{ path('edit', { 'id': announcement.id }) }}">Edytuj ogłoszenie<br/><br/></a>
-        <a href="{{ path('delete', { 'id': announcement.id }) }}">Usuń ogłoszenie<br/><br/></a>
+        <a href="{{ path('edit', { 'id': announcement.id }) }}">Edytuj ogłoszenie</a><br/><br/>
+        <a href="{{ path('delete', { 'id': announcement.id }) }}">Usuń ogłoszenie</a><br/><br/>
     {% else %}
         <h4 style="color: crimson">Zaloguj się aby usunąć lub edytować to ogłoszenie</h4>
     {% endif %}
+    <a href="{{ path('showAll') }}">Powrót do listy ogłoszeń</a><br/><br/>
     <a href="http://localhost:8000/">Powrót do strony głównej</a>
 {% endblock %}

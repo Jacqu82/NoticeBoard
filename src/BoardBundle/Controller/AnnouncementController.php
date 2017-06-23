@@ -30,12 +30,19 @@ class AnnouncementController extends Controller
             $announcement->setUser($user);
 
             $file = $announcement->getPhotoPath();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
             $file->move(
                 $this->getParameter('path_directory'),
                 $fileName);
             $announcement->setPhotoPath($fileName);
+
+            $validator = $this->get('validator');
+            $errors = $validator->validate($announcement);
+
+            if (count($errors) > 0) {
+                return $this->render('BoardBundle:Announcement:create.html.twig', array('errors' => $errors));
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($announcement);
@@ -43,7 +50,7 @@ class AnnouncementController extends Controller
 
             return $this->redirectToRoute('showAll', array('id' => $announcement->getId()));
         }
-        return $this->render('BoardBundle:Announcement:create.html.twig',array('form' => $form->createView()));
+        return $this->render('BoardBundle:Announcement:create.html.twig', array('form' => $form->createView()));
     }
 
     /**
@@ -56,7 +63,7 @@ class AnnouncementController extends Controller
         if (!$announcement) {
             throw new NotFoundHttpException('Nie znaleziono żadnych ogłoszeń');
         }
-            return $this->render('BoardBundle:Announcement:show.html.twig', array('announcements' => $announcement));
+        return $this->render('BoardBundle:Announcement:show.html.twig', array('announcements' => $announcement));
     }
 
     /**
@@ -67,9 +74,9 @@ class AnnouncementController extends Controller
         $announcementRepository = $this->getDoctrine()->getRepository('BoardBundle:Announcement');
         $announcement = $announcementRepository->find($id);
         if (!$announcement) {
-            return new Response('Ogłoszenie o '.$id.' nie istnieje');
+            return new Response('Ogłoszenie o ' . $id . ' nie istnieje');
         }
-            return $this->render('BoardBundle:Announcement:show_details.html.twig', array('announcement' => $announcement));
+        return $this->render('BoardBundle:Announcement:show_details.html.twig', array('announcement' => $announcement));
     }
 
     /**
@@ -87,17 +94,24 @@ class AnnouncementController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-        $file = $announcement->getPhotoPath();
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file = $announcement->getPhotoPath();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
-        $file->move(
-            $this->getParameter('path_directory'),
-            $fileName);
-        $announcement->setPhotoPath($fileName);
+            $file->move(
+                $this->getParameter('path_directory'),
+                $fileName);
+            $announcement->setPhotoPath($fileName);
 
-        if ($announcementUser != $loggedUser) {
-            return new Response('Nie możesz edytować tego ogłoszenia!');
-        }
+            if ($announcementUser != $loggedUser) {
+                return new Response('Nie możesz edytować tego ogłoszenia!');
+            }
+
+            $validator = $this->get('validator');
+            $errors = $validator->validate($announcement);
+
+            if (count($errors) > 0) {
+                return $this->render('BoardBundle:Announcement:edit.html.twig', array('errors' => $errors));
+            }
 
             $announcement = $form->getData();
             $em = $this->getDoctrine()->getManager();

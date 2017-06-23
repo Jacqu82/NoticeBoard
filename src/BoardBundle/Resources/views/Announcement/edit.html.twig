@@ -4,8 +4,14 @@
 
 {% block body %}
     <h1>Edytuj swoje ogłoszenie</h1>
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    {% if errors is defined %}
+        {% for error in errors %}
+            <p> {{ error.message }}</p>
+        {% endfor %}
+    {% else %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
     <a href="http://localhost:8000/">Powrót do strony głównej</a>
 {% endblock %}

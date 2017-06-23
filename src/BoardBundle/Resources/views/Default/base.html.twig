@@ -63,6 +63,14 @@
                 </a>
                 <small>(po użytkownikach)</small>
             </p>
+            {#{% if is_granted('ROLE_ADMIN') %}#}
+                <p>
+                    <a href="{{ path('createCategory', {}) }}">
+                        <h3>Dodaj kategorię</h3>
+                    </a>
+                    <small>(tylko dla admina)</small>
+                </p>
+            {#{% endif %}#}
             <hr/>
             <a href="http://localhost:8000/logout">Wyloguj się</a>
         {% endif %}

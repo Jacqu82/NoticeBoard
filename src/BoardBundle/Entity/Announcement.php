@@ -3,6 +3,7 @@
 namespace BoardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="announcement")
@@ -34,11 +35,25 @@ class Announcement
 
     /**
      * @ORM\Column(name="title", type="string", length=200)
+     *
+     * @Assert\Length(
+     *     min = 5,
+     *     max = 50,
+     *     minMessage = "Tytuł ogłoszenia powinien zawierać przynajmniej {{ limit }} znaków!",
+     *     maxMessage = "Tytuł ogłoszenia może zawierać max {{ limit }} znaków!"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(name="description", type="text")
+     *
+     * @Assert\Length(
+     *     min = 10,
+     *     max = 200,
+     *     minMessage = "Opis powinien zawierać przynajmniej {{ limit }} znaków!",
+     *     maxMessage = "Opis może zawierać max {{ limit }} znaków!"
+     * )
      */
     private $description;
 

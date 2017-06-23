@@ -15,13 +15,12 @@ class AnnouncementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', 'text', array('label' => 'Tytuł'))
+        $builder->add('title', 'text', array('label' => 'Wpisz tytuł'))
                 ->add('description', 'text', array('label' => 'Opis'))
                 ->add('price','number', array('label' => 'Cena'))
                 ->add('addDate', 'datetime', array('label' => 'Data wygaśnięcia ogłoszenia'))
-                ->add('category', 'entity', array('class' => 'BoardBundle:Category', 'label' => 'Kategoria'))
+                ->add('category', 'entity', array('class' => 'BoardBundle:Category', 'label' => 'Wybierz kategorie'))
                 ->add('photo_path', FileType::class, array('data_class' => null, 'label' => 'Dodaj zdjęcie'))
-//                ->add('user', 'entity', array('class' => 'BoardBundle:User', 'label' => 'użytkownik'))
                 ->add('save', 'submit', array('label' => 'Dodaj ogłoszenie'));
     }
     

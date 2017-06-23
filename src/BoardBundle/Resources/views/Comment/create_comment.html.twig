@@ -8,6 +8,10 @@
         {{ form_start (form) }}
         {{ form_widget (form) }}
         {{ form_end (form) }}
+        <hr/>
+        {#{% for announcement in comment.announcement %}#}
+            {#<a href="{{ path('show_details', { 'id': announcement.id}) }}">Powrót do ogłoszenia</a><br/><br/>#}
+        {#{% endfor %}#}
     {% else %}
         <h4 style="color: crimson">Aby dodać komentarz musisz być zalogowany!</h4>
     {% endif %}

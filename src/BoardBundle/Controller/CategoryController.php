@@ -23,6 +23,8 @@ class CategoryController extends Controller
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
 
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Access denied');
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
