@@ -21,7 +21,19 @@ class AnnouncementType extends AbstractType
                 ->add('addDate', 'datetime', array('label' => 'Data wygaśnięcia ogłoszenia'))
                 ->add('category', 'entity', array('class' => 'BoardBundle:Category', 'label' => 'Wybierz kategorie'))
                 ->add('photo_path', FileType::class, array('data_class' => null, 'label' => 'Dodaj zdjęcie'))
-                ->add('save', 'submit', array('label' => 'Dodaj ogłoszenie'));
+                ->add('save', 'submit', array('label' => 'Wyślij'));
+
+        if ($options['noPhoto']) {
+            $builder->remove('photo_path');
+        }
+
+        if($options['justPhoto']) {
+            $builder->remove('title')
+                    ->remove('description')
+                    ->remove('price')
+                    ->remove('addDate')
+                    ->remove('category');
+        }
     }
     
     /**
@@ -30,7 +42,9 @@ class AnnouncementType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BoardBundle\Entity\Announcement'
+            'data_class' => 'BoardBundle\Entity\Announcement',
+            'noPhoto' => false,
+            'justPhoto' => false
         ));
     }
 

@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Edit photo{% endblock %}
+
+{% block body %}
+    <h2>Aktualne zdjęcie:</h2>
+    <img src='{{ asset( photo.getWebPath ) }}' width="400" height="320">
+    <h3>Zmień zdjęcie:</h3>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    <hr/>
+    <a href="{{ path('show_details', { 'id': photo.id }) }}">Powrót do ogłoszenia</a><br/><br/>
+    <a href="http://localhost:8000/">Powrót do strony głównej</a>
+{% endblock %}

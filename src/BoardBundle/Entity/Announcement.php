@@ -50,7 +50,7 @@ class Announcement
      *
      * @Assert\Length(
      *     min = 10,
-     *     max = 200,
+     *     max = 500,
      *     minMessage = "Opis powinien zawierać przynajmniej {{ limit }} znaków!",
      *     maxMessage = "Opis może zawierać max {{ limit }} znaków!"
      * )

@@ -4,6 +4,7 @@ namespace BoardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use \DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Comment
@@ -36,6 +37,13 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="text", type="string", length=255)
+     *
+     * @Assert\Length(
+     *     min = 5,
+     *     max = 50,
+     *     minMessage = "Komentarz powinien zawierać przynajmniej {{ limit }} znaków!",
+     *     maxMessage = "Komentarz może zawierać max {{ limit }} znaków!"
+     * )
      */
     private $text;
 

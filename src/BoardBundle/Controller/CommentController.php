@@ -33,13 +33,20 @@ class CommentController extends Controller
             $comment->setAnnouncement($announcement);
             $comment->setDate();
 
+            $validator = $this->get('validator');
+            $errors = $validator->validate($comment);
+            if (count($errors) > 0) {
+                return $this->render('BoardBundle:Comment:create_comment.html.twig', array('errors' => $errors));
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
             $em->flush();
 
             return $this->redirectToRoute('show_details', array('id' => $announcement->getId()));
         }
-        return $this->render('BoardBundle:Comment:create_comment.html.twig', array('form' => $form->createView()));
+        return $this->render('BoardBundle:Comment:create_comment.html.twig', array('announcement' => $comment,
+            'form' => $form->createView()));
     }
 
     /**

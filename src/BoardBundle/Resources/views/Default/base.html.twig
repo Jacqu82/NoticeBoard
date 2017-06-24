@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
     <link href="{{ asset('bundles/framework/css/style.css') }}" rel="stylesheet"/>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    {% endblock %}
 </head>
 <body>
 {% block body %}
@@ -19,26 +20,22 @@
             <hr/>
             <p>
                 <a href="{{ path('create', {}) }}">
-                    <h3>Dodaj ogłoszenie</h3>
+                    Dodaj ogłoszenie
                 </a>
             </p>
             <p>
                 <a href="{{ path('showAll', {}) }}">
-                    <h3>Przeglądaj wszystkie ogłoszenia</h3>
+                    Przeglądaj wszystkie ogłoszenia
                 </a>
             </p>
-            <p>
                 <a href="{{ path('showAllCategories') }}">
-                    <h3>Przeglądaj ogłoszenia</h3>
+                    Przeglądaj ogłoszenia<br/>
                 </a>
-                <small>(po kategorii)</small>
-            </p>
-            <p>
+                <small>(po kategorii)</small><br/><br/>
                 <a href="{{ path('showAllUsers') }}">
-                    <h3>Przeglądaj ogłoszenia</h3>
+                    Przeglądaj ogłoszenia<br/>
                 </a>
-                <small>(po użytkownikach)</small>
-            </p>
+                <small>(po użytkownikach)</small><br/>
         {% else %}
             Zalogowany jako: {{ data.userName }}
             <p>
@@ -53,24 +50,22 @@
             </p>
             <p>
                 <a href="{{ path('showAllCategories') }}">
-                    <h3>Przeglądaj ogłoszenia</h3>
+                    <strong>Przeglądaj ogłoszenia</strong><br/>
                 </a>
                 <small>(po kategorii)</small>
             </p>
             <p>
                 <a href="{{ path('showAllUsers') }}">
-                    <h3>Przeglądaj ogłoszenia</h3>
+                    <strong>Przeglądaj ogłoszenia</strong><br/>
                 </a>
                 <small>(po użytkownikach)</small>
             </p>
-            {#{% if is_granted('ROLE_ADMIN') %}#}
                 <p>
                     <a href="{{ path('createCategory', {}) }}">
-                        <h3>Dodaj kategorię</h3>
+                        <strong>Dodaj kategorię</strong><br/>
                     </a>
                     <small>(tylko dla admina)</small>
                 </p>
-            {#{% endif %}#}
             <hr/>
             <a href="http://localhost:8000/logout">Wyloguj się</a>
         {% endif %}

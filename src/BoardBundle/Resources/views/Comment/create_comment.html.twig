@@ -5,15 +5,22 @@
 {% block body %}
     <h1>Dodaj nowy komentarz</h1>
     {% if app.user %}
-        {{ form_start (form) }}
-        {{ form_widget (form) }}
-        {{ form_end (form) }}
+        {% if errors is defined %}
+            {% for error in errors %}
+                <p> {{ error.message }}</p>
+            {% endfor %}
+        {% else %}
+            {{ form_start (form) }}
+            {{ form_widget (form) }}
+            {{ form_end (form) }}
+        {% endif %}
         <hr/>
-        {#{% for announcement in comment.announcement %}#}
-            {#<a href="{{ path('show_details', { 'id': announcement.id}) }}">Powrót do ogłoszenia</a><br/><br/>#}
-        {#{% endfor %}#}
+        <a href="{{ path('showAll') }}">Powrót do listy ogłoszeń</a><br/><br/>
+        <a href="http://localhost:8000/">Powrót do strony głównej</a>
     {% else %}
         <h4 style="color: crimson">Aby dodać komentarz musisz być zalogowany!</h4>
+        <hr/>
+        <a href="{{ path('showAll') }}">Powrót do listy ogłoszeń</a><br/><br/>
+        <a href="http://localhost:8000/">Powrót do strony głównej</a>
     {% endif %}
-    <a href="http://localhost:8000/">Powrót do strony głównej</a>
 {% endblock %}
