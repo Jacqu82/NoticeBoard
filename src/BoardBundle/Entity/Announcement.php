@@ -85,7 +85,7 @@ class Announcement
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -108,7 +108,7 @@ class Announcement
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -131,7 +131,7 @@ class Announcement
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -154,7 +154,7 @@ class Announcement
     /**
      * Get price
      *
-     * @return float 
+     * @return float
      */
     public function getPrice()
     {
@@ -177,7 +177,7 @@ class Announcement
     /**
      * Get addDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getAddDate()
     {
@@ -200,7 +200,7 @@ class Announcement
     /**
      * Get user
      *
-     * @return \BoardBundle\Entity\User 
+     * @return \BoardBundle\Entity\User
      */
     public function getUser()
     {
@@ -223,7 +223,7 @@ class Announcement
     /**
      * Get category
      *
-     * @return \BoardBundle\Entity\Category 
+     * @return \BoardBundle\Entity\Category
      */
     public function getCategory()
     {
@@ -232,7 +232,7 @@ class Announcement
 
     public function getWebPath()
     {
-        return '/photo/'.$this->photoPath;
+        return '/photo/' . $this->photoPath;
     }
 
     /**
@@ -269,7 +269,7 @@ class Announcement
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {

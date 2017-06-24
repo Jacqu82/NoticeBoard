@@ -1,10 +1,9 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Edit photo{% endblock %}
-
+{% block title %}BoardBundle:Announcement:edit_photo{% endblock %}
 {% block body %}
     <h2>Aktualne zdjęcie:</h2>
-    <img src='{{ asset( photo.getWebPath ) }}' width="400" height="320">
+    <img src='{{ asset( photo.getWebPath ) }}' width="350" height="300">
     <h3>Zmień zdjęcie:</h3>
     {{ form_start(form) }}
     {{ form_widget(form) }}

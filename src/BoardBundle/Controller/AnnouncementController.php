@@ -139,11 +139,9 @@ class AnnouncementController extends Controller
         ));
 
         $photoForm->handleRequest($request);
-
         if ($photoForm->isSubmitted()) {
             $file = $photo->getPhotoPath();
             $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-
             $file->move(
                 $this->getParameter('path_directory'),
                 $fileName);

@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use BoardBundle\Entity\Category;
 use BoardBundle\Form\CategoryType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CategoryController extends Controller
@@ -26,7 +25,6 @@ class CategoryController extends Controller
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Access denied');
 
         $form->handleRequest($request);
-
         if ($form->isSubmitted()) {
             $category = $form->getData();
             $em = $this->getDoctrine()->getManager();
@@ -35,13 +33,12 @@ class CategoryController extends Controller
 
             return new Response('Dodałeś kategorię');
         }
-        return $this->render('BoardBundle:Category:create_category.html.twig',array('form' => $form->createView()));
+        return $this->render('BoardBundle:Category:create_category.html.twig', array('form' => $form->createView()));
     }
 
     /**
      * @Route("/showAllCategories", name="showAllCategories")
      * @Method("GET")
-     * @Template("BoardBundle:Category:showAll.html.twig")
      */
     public function showAllCategoriesAction()
     {
@@ -50,7 +47,6 @@ class CategoryController extends Controller
         if (!$category) {
             throw new NotFoundHttpException('Nie znaleziono kategorii');
         }
-        return ['categories' => $category];
+        return $this->render('BoardBundle:Category:showAll.html.twig', array('categories' => $category));
     }
-
 }

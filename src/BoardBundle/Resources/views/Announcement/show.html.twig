@@ -1,7 +1,6 @@
 {% extends "::base.html.twig" %}
 
 {% block title %}BoardBundle:Announcement:show{% endblock %}
-
 {% block body %}
     <h1>Wszystkie ogłoszenia</h1>
     {% for announcement in announcements %}
@@ -11,7 +10,7 @@
         <h2>Cena: {{ announcement.price }} zł</h2>
         <p>Data wygaśnięcia: {{ announcement.addDate |date("d/m/Y H:i:s") }}</p>
         <small>(Dodano przez użytkownika {{ announcement.getUser() }})</small>
+        <p><a href="http://localhost:8000/">Powrót do strony głównej</a></p>
         <hr/>
     {% endfor %}
-    <a href="http://localhost:8000/">Powrót do strony głównej</a>
 {% endblock %}

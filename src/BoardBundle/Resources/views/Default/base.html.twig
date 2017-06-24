@@ -4,8 +4,8 @@
     <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
-    <link href="{{ asset('bundles/framework/css/style.css') }}" rel="stylesheet"/>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+        <link href="{{ asset('bundles/framework/css/style.css') }}" rel="stylesheet"/>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     {% endblock %}
 </head>
 <body>
@@ -19,23 +19,16 @@
             <a href="http://localhost:8000/register/">Załóż nowe konto</a>
             <hr/>
             <p>
-                <a href="{{ path('create', {}) }}">
-                    Dodaj ogłoszenie
-                </a>
+                <a href="{{ path('create', {}) }}">Dodaj ogłoszenie</a>
             </p>
             <p>
-                <a href="{{ path('showAll', {}) }}">
-                    Przeglądaj wszystkie ogłoszenia
-                </a>
+                <a href="{{ path('showAll', {}) }}">Przeglądaj wszystkie ogłoszenia</a>
             </p>
-                <a href="{{ path('showAllCategories') }}">
-                    Przeglądaj ogłoszenia<br/>
-                </a>
-                <small>(po kategorii)</small><br/><br/>
-                <a href="{{ path('showAllUsers') }}">
-                    Przeglądaj ogłoszenia<br/>
-                </a>
-                <small>(po użytkownikach)</small><br/>
+            <a href="{{ path('showAllCategories') }}">Przeglądaj ogłoszenia</a><br/>
+            <small>(po kategorii)</small><br/><br/>
+            <a href="{{ path('showAllUsers') }}">Przeglądaj ogłoszenia</a><br/>
+            <small>(po użytkownikach)</small>
+            <hr/>
         {% else %}
             Zalogowany jako: {{ data.userName }}
             <p>
@@ -60,12 +53,12 @@
                 </a>
                 <small>(po użytkownikach)</small>
             </p>
-                <p>
-                    <a href="{{ path('createCategory', {}) }}">
-                        <strong>Dodaj kategorię</strong><br/>
-                    </a>
-                    <small>(tylko dla admina)</small>
-                </p>
+            <p>
+                <a href="{{ path('createCategory', {}) }}">
+                    <strong>Dodaj kategorię</strong><br/>
+                </a>
+                <small>(tylko dla admina)</small>
+            </p>
             <hr/>
             <a href="http://localhost:8000/logout">Wyloguj się</a>
         {% endif %}

@@ -1,11 +1,10 @@
 {% extends "::base.html.twig" %}
 
 {% block title %}BoardBundle:User:show{% endblock %}
-
 {% block body %}
     <h1>Znajdź ogłoszenie po użytkowniku</h1>
     {% for user in users %}
-        <h2>{{ user.username }}</h2>
+        <h2>Ogłoszenia użytkownika: {{ user.username }}</h2>
         {% for announcement in user.announcements %}
             <p><a href="{{ path('show_details', {'id':announcement.id}) }}">{{ announcement.title }}</a></p>
         {% endfor %}

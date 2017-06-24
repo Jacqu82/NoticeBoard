@@ -40,7 +40,7 @@ class Category
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -63,7 +63,7 @@ class Category
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -96,7 +96,7 @@ class Category
     /**
      * Get announcements
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAnnouncements()
     {
@@ -105,6 +105,6 @@ class Category
 
     public function __toString()
     {
-        return (string) $this->title;
+        return (string)$this->title;
     }
 }

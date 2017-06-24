@@ -15,9 +15,9 @@ class AnnouncementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', 'text', array('label' => 'Wpisz tytuł'))
-                ->add('description', 'text', array('label' => 'Opis'))
-                ->add('price','number', array('label' => 'Cena'))
+        $builder->add('title', 'textarea', array('label' => 'Wpisz tytuł', 'attr' => array('cols' => '25', 'rows' => '3')))
+                ->add('description', 'textarea', array('label' => 'Opis', 'attr' => array('cols' => '50', 'rows' => '5')))
+                ->add('price', 'number', array('label' => 'Cena'))
                 ->add('addDate', 'datetime', array('label' => 'Data wygaśnięcia ogłoszenia'))
                 ->add('category', 'entity', array('class' => 'BoardBundle:Category', 'label' => 'Wybierz kategorie'))
                 ->add('photo_path', FileType::class, array('data_class' => null, 'label' => 'Dodaj zdjęcie'))
@@ -27,7 +27,7 @@ class AnnouncementType extends AbstractType
             $builder->remove('photo_path');
         }
 
-        if($options['justPhoto']) {
+        if ($options['justPhoto']) {
             $builder->remove('title')
                     ->remove('description')
                     ->remove('price')
@@ -35,7 +35,7 @@ class AnnouncementType extends AbstractType
                     ->remove('category');
         }
     }
-    
+
     /**
      * {@inheritdoc}
      */

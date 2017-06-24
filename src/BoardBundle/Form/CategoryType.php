@@ -17,7 +17,7 @@ class CategoryType extends AbstractType
         $builder->add('title', 'text', array('label' => 'Nazwa kategorii'))
                 ->add('save', 'submit', array('label' => 'Dodaj Kategorię'));
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -35,6 +35,4 @@ class CategoryType extends AbstractType
     {
         return 'boardbundle_category';
     }
-
-
 }

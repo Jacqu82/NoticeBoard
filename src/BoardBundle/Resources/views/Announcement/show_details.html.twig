@@ -1,7 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}BoardBundle:Announcement:show{% endblock %}
-
+{% block title %}BoardBundle:Announcement:show_details{% endblock %}
 {% block body %}
     <h3>Kategoria: {{ announcement.getCategory() }}</h3>
     <h1>{{ announcement.title }}</h1>
@@ -25,6 +24,7 @@
     {% else %}
         <h4 style="color: crimson">Zaloguj się aby usunąć lub edytować to ogłoszenie</h4>
     {% endif %}
+    <hr/>
     <a href="{{ path('showAll') }}">Powrót do listy ogłoszeń</a><br/><br/>
     <a href="http://localhost:8000/">Powrót do strony głównej</a>
 {% endblock %}
