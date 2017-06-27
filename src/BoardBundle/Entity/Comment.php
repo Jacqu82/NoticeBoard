@@ -54,7 +54,6 @@ class Comment
      */
     private $date;
 
-
     /**
      * Get id
      *

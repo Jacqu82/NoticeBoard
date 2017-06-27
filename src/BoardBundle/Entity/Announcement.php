@@ -72,6 +72,14 @@ class Announcement
      */
     private $photoPath;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     public function getPhotoPath()
     {
         return $this->photoPath;
@@ -233,14 +241,6 @@ class Announcement
     public function getWebPath()
     {
         return '/photo/' . $this->photoPath;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
