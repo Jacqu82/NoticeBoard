@@ -10,61 +10,63 @@
 </head>
 <body>
 {% block body %}
-    <div>
-        <h1>Tablica ogłoszeń.pl</h1>
-        {% if not app.user %}
-            <h4 style="color: crimson">Nie jesteś zalogowany!</h4>
-            <a href="http://localhost:8000/login">Zaloguj się</a><br/>
-            <small>lub</small><br/>
-            <a href="http://localhost:8000/register/">Załóż nowe konto</a>
-            <hr/>
-            <p>
-                <a href="{{ path('create', {}) }}">Dodaj ogłoszenie</a>
-            </p>
-            <p>
-                <a href="{{ path('showAll', {}) }}">Przeglądaj wszystkie ogłoszenia</a>
-            </p>
-            <a href="{{ path('showAllCategories') }}">Przeglądaj ogłoszenia</a><br/>
-            <small>(po kategorii)</small><br/><br/>
-            <a href="{{ path('showAllUsers') }}">Przeglądaj ogłoszenia</a><br/>
-            <small>(po użytkownikach)</small>
-            <hr/>
-        {% else %}
-            Zalogowany jako: {{ data.userName }}
-            <p>
-                <a href="{{ path('create', {}) }}">
-                    <h3>Dodaj ogłoszenie</h3>
-                </a>
-            </p>
-            <p>
-                <a href="{{ path('showAll', {}) }}">
-                    <h3>Przeglądaj wszystkie ogłoszenia</h3>
-                </a>
-            </p>
-            <p>
-                <a href="{{ path('showAllCategories') }}">
-                    <strong>Przeglądaj ogłoszenia</strong><br/>
-                </a>
-                <small>(po kategorii)</small>
-            </p>
-            <p>
-                <a href="{{ path('showAllUsers') }}">
-                    <strong>Przeglądaj ogłoszenia</strong><br/>
-                </a>
-                <small>(po użytkownikach)</small>
-            </p>
-            <p>
-                <a href="{{ path('createCategory', {}) }}">
-                    <strong>Dodaj kategorię</strong><br/>
-                </a>
-                <small>(tylko dla admina)</small>
-            </p>
-            <hr/>
-            <a href="http://localhost:8000/logout">Wyloguj się</a>
-        {% endif %}
+<div class="container">
+    <div class="header">
+    <h1>Tablica ogłoszeń.pl</h1>
     </div>
+    {% if not app.user %}
+        <h4 style="color: crimson">Nie jesteś zalogowany!</h4>
+        <a href="{{ path('fos_user_security_login') }}">Zaloguj się</a><br/>
+        <small>lub</small><br/>
+        <a href="{{ path('fos_user_registration_register') }}">Załóż nowe konto</a>
+        <hr/>
+        <p>
+            <a href="{{ path('create', {}) }}">Dodaj ogłoszenie</a>
+        </p>
+        <p>
+            <a href="{{ path('showAll', {}) }}">Przeglądaj wszystkie ogłoszenia</a>
+        </p>
+        <a href="{{ path('showAllCategories') }}">Przeglądaj ogłoszenia</a><br/>
+        <small>(po kategorii)</small><br/><br/>
+        <a href="{{ path('showAllUsers') }}">Przeglądaj ogłoszenia</a><br/>
+        <small>(po użytkownikach)</small>
+        <hr/>
+    {% else %}
+        Zalogowany jako: {{ data.userName }}
+        <p>
+            <a href="{{ path('create', {}) }}">
+                <h3>Dodaj ogłoszenie</h3>
+            </a>
+        </p>
+        <p>
+            <a href="{{ path('showAll', {}) }}">
+                <h3>Przeglądaj wszystkie ogłoszenia</h3>
+            </a>
+        </p>
+        <p>
+            <a href="{{ path('showAllCategories') }}">
+                <strong>Przeglądaj ogłoszenia</strong><br/>
+            </a>
+            <small>(po kategorii)</small>
+        </p>
+        <p>
+            <a href="{{ path('showAllUsers') }}">
+                <strong>Przeglądaj ogłoszenia</strong><br/>
+            </a>
+            <small>(po użytkownikach)</small>
+        </p>
+        <p>
+            <a href="{{ path('createCategory', {}) }}">
+                <strong>Dodaj kategorię</strong><br/>
+            </a>
+            <small>(tylko dla admina)</small>
+        </p>
+        <hr/>
+        <a href="{{ path('fos_user_security_logout') }}">Wyloguj się</a>
+    {% endif %}
+    <div class="footer">2017 &copy Tablica ogłoszeń.pl</div>
+</div>
 {% endblock %}
 {% block javascripts %}{% endblock %}
-<div class="footer">2017 &copy Tablica ogłoszeń.pl</div>
 </body>
 </html>

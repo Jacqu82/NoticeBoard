@@ -2,6 +2,7 @@
 
 {% block title %}BoardBundle:Announcement:show_details{% endblock %}
 {% block body %}
+    <div class="container">
     <h3>Kategoria: {{ announcement.getCategory() }}</h3>
     <h1>{{ announcement.title }}</h1>
     <h2>Cena: {{ announcement.price }} zł</h2>
@@ -26,5 +27,6 @@
     {% endif %}
     <hr/>
     <a href="{{ path('showAll') }}">Powrót do listy ogłoszeń</a><br/><br/>
-    <a href="http://localhost:8000/">Powrót do strony głównej</a>
+        <a href="{{ path('start_page') }}">Powrót do strony głównej</a>
+    </div>
 {% endblock %}

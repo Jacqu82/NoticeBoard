@@ -2,6 +2,7 @@
 
 {% block title %}BoardBundle:Category:show{% endblock %}
 {% block body %}
+    <div class="container">
     <h1>Znajdź ogłoszenie po kategorii</h1>
     {% for category in categories %}
         <h2>{{ category.title }}</h2>
@@ -10,5 +11,6 @@
         {% endfor %}
         <hr/>
     {% endfor %}
-    <a href="http://localhost:8000/">Powrót do strony głównej</a>
+        <a href="{{ path('start_page') }}">Powrót do strony głównej</a>
+    </div>
 {% endblock %}

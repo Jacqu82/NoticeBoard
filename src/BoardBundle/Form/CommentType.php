@@ -6,7 +6,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CommentType extends AbstractType
 {
@@ -15,8 +16,13 @@ class CommentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('text', 'textarea', array('label' => 'Treść komentarza', 'attr' => array('cols' => '50', 'rows' => '5')))
-                ->add('save', 'submit', array('label' => 'Dodaj komentarz'));
+        $builder->add('text', TextareaType::class, array(
+                    'label' => 'Treść komentarza',
+                    'attr' => array(
+                        'cols' => '50',
+                        'rows' => '5')))
+                ->add('save', SubmitType::class, array(
+                    'label' => 'Dodaj komentarz'));
     }
 
     /**

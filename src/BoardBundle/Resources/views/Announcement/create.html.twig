@@ -2,6 +2,7 @@
 
 {% block title %}BoardBundle:Announcement:create{% endblock %}
 {% block body %}
+    <div class="container">
     <h1>Dodaj nowe ogłoszenie</h1>
     {% if app.user %}
         {% if errors is defined %}
@@ -17,5 +18,6 @@
         <h4 style="color: crimson">Aby dodać ogłoszenie musisz być zalogowany!</h4>
     {% endif %}
     <hr/>
-    <a href="http://localhost:8000/">Powrót do strony głównej</a>
+        <a href="{{ path('start_page') }}">Powrót do strony głównej</a>
+    </div>
 {% endblock %}
